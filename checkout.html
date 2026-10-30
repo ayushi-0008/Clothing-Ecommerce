@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout | LUXE NOIR</title>
+  <meta name="description" content="Complete your purchase with secure encrypted checkout at Luxe Noir.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light-section">
+
+  <!-- Simple Header for Checkout -->
+  <header class="checkout-minimal-header py-3 bg-white border-bottom">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="index.html" class="navbar-brand m-0">
+        <span class="brand-text">LUXE NOIR</span>
+      </a>
+      <div class="checkout-ssl-badge text-muted small">
+        <i class="bi bi-shield-lock-fill text-success me-1"></i> 256-Bit SSL Encrypted Checkout
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <!-- Checkout Active Form Screen -->
+      <div id="checkoutContent">
+        <div class="row g-5">
+          <!-- Billing / Shipping Form Column -->
+          <div class="col-lg-7">
+            <form id="checkoutForm" novalidate>
+              <!-- 1. Contact Information -->
+              <div class="checkout-card mb-4">
+                <h3 class="checkout-section-title"><span class="step-num">1</span> Contact Information</h3>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label-custom">Email Address *</label>
+                    <input type="email" id="emailField" class="form-control-custom" placeholder="name@example.com" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label-custom">Mobile Number *</label>
+                    <input type="tel" id="phoneField" class="form-control-custom" placeholder="10-digit mobile number" required>
+                    <div class="invalid-feedback">Please provide a 10-digit phone number.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Shipping Address -->
+              <div class="checkout-card mb-4">
+                <h3 class="checkout-section-title"><span class="step-num">2</span> Shipping Address</h3>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label class="form-label-custom">First Name *</label>
+                    <input type="text" id="firstNameField" class="form-control-custom" placeholder="First Name" required>
+                    <div class="invalid-feedback">First name is required.</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="form-label-custom">Last Name *</label>
+                    <input type="text" id="lastNameField" class="form-control-custom" placeholder="Last Name" required>
+                    <div class="invalid-feedback">Last name is required.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label-custom">Street Address *</label>
+                    <input type="text" id="addressField" class="form-control-custom" placeholder="Apartment, suite, unit, building, street" required>
+                    <div class="invalid-feedback">Street address is required.</div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label-custom">City *</label>
+                    <input type="text" id="cityField" class="form-control-custom" placeholder="City" required>
+                    <div class="invalid-feedback">City is required.</div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label-custom">State *</label>
+                    <select id="stateField" class="form-control-custom" required>
+                      <option value="">Choose...</option>
+                      <option value="MH">Maharashtra</option>
+                      <option value="DL">Delhi NCR</option>
+                      <option value="KA">Karnataka</option>
+                      <option value="TN">Tamil Nadu</option>
+                      <option value="TS">Telangana</option>
+                      <option value="WB">West Bengal</option>
+                      <option value="GJ">Gujarat</option>
+                    </select>
+                    <div class="invalid-feedback">State is required.</div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label-custom">Pincode *</label>
+                    <input type="text" id="pincodeField" class="form-control-custom" placeholder="6-digit PIN" maxlength="6" required>
+                    <div class="invalid-feedback">Valid 6-digit PIN is required.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Payment Method -->
+              <div class="checkout-card mb-4">
+                <h3 class="checkout-section-title"><span class="step-num">3</span> Payment Method</h3>
+                <div class="payment-method-selector">
+                  <div class="form-check payment-radio-option active">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="payUPI" checked>
+                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="payUPI">
+                      <span><i class="bi bi-qr-code-scan me-2"></i> UPI / QR Code / NetBanking</span>
+                      <span class="badge bg-dark">Instant</span>
+                    </label>
+                  </div>
+                  <div class="form-check payment-radio-option">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="payCard">
+                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="payCard">
+                      <span><i class="bi bi-credit-card me-2"></i> Credit / Debit Card</span>
+                      <span class="text-muted small">Visa, MC, Amex</span>
+                    </label>
+                  </div>
+                  <div class="form-check payment-radio-option">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="payCOD">
+                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="payCOD">
+                      <span><i class="bi bi-cash-stack me-2"></i> Cash on Delivery (COD)</span>
+                      <span class="text-muted small">Standard</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-dark w-100 py-3 fs-6 fw-semibold">
+                Complete Order
+              </button>
+            </form>
+          </div>
+
+          <!-- Order Summary Column -->
+          <div class="col-lg-5">
+            <div class="order-summary-card position-sticky" style="top: 2rem;">
+              <h3 class="summary-title mb-3">Order Details</h3>
+              <div class="order-items-scroll mb-4" id="orderItems">
+                <!-- Injected via renderOrderSummary() in main.js -->
+              </div>
+
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="orderSubtotal">₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Delivery</span>
+                <span id="orderDelivery">₹0</span>
+              </div>
+              <hr class="summary-divider">
+              <div class="summary-row total-row">
+                <span>Total</span>
+                <span class="total-price" id="orderTotal">₹0</span>
+              </div>
+
+              <div class="mt-4 pt-3 border-top text-center text-muted small">
+                <p class="mb-0"><i class="bi bi-shield-check text-gold me-1"></i> Satisfaction guaranteed. 30-day effortless returns policy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Confirmation Screen (shown after placeOrder) -->
+      <div id="orderConfirmation" class="order-confirmation-screen text-center" style="display: none;">
+        <div class="confirmation-card mx-auto">
+          <div class="success-icon-wrap mb-4">
+            <i class="bi bi-check2"></i>
+          </div>
+          <span class="text-gold letter-spacing-wide small text-uppercase fw-semibold">ORDER CONFIRMED</span>
+          <h1 class="confirmation-title mt-2 mb-3">Thank you for your order, <span id="confirmName">Customer</span>!</h1>
+          <p class="confirmation-desc text-muted mb-4">
+            Your order <strong class="text-dark" id="confirmOrderNum">#LN88210492</strong> has been placed successfully. A confirmation email with tracking information has been sent to your inbox.
+          </p>
+
+          <div class="confirmation-details-box mb-4 text-start">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Total Paid</span>
+              <strong id="confirmTotal">₹0</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Estimated Delivery</span>
+              <strong>3-5 Business Days</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-muted">Delivery Type</span>
+              <span>Express Insured Courier</span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-center">
+            <a href="index.html" class="btn btn-dark px-4 py-2">Return to Home</a>
+            <a href="products.html" class="btn btn-outline-dark px-4 py-2">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container-custom" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

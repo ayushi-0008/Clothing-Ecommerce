@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE NOIR | Contemporary Luxury Fashion & Apparel</title>
+  <meta name="description" content="Discover refined contemporary fashion at Luxe Noir. Explore our signature tailored shirts, blazers, elegant dresses, and premium accessories.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-logo">LUXE NOIR</div>
+  </div>
+
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container text-center">
+      <p class="mb-0">
+        COMPLIMENTARY DOMESTIC SHIPPING ON ORDERS OVER ₹2,000 &nbsp;|&nbsp; USE CODE: <span class="fw-bold tracking-wider">NOIR15</span> FOR 15% OFF
+      </p>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Mobile Hamburger -->
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Brand Logo -->
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-text">LUXE NOIR</span>
+        <span class="brand-tagline">ATELIER PARIS • MUMBAI</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="navbar-nav-links d-none d-lg-flex" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link-item">Home</a>
+        <a href="products.html?category=men" class="nav-link-item">Men</a>
+        <a href="products.html?category=women" class="nav-link-item">Women</a>
+        <a href="products.html?category=kids" class="nav-link-item">Kids</a>
+        <a href="products.html?category=accessories" class="nav-link-item">Accessories</a>
+        <a href="products.html?category=sale" class="nav-link-item sale-link">Sale</a>
+      </nav>
+
+      <!-- Utility Icons -->
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" id="searchBtn" aria-label="Search catalog" title="Search">
+          <i class="bi bi-search"></i>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn position-relative" aria-label="Wishlist" title="Wishlist">
+          <i class="bi bi-heart"></i>
+          <span class="wishlist-badge badge-count" style="display: none;">0</span>
+        </a>
+        <button class="nav-icon-btn position-relative" id="cartOpenBtn" onclick="openCartSidebar()" aria-label="Shopping Cart" title="Cart">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge badge-count" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <span class="brand-text">LUXE NOIR</span>
+      <button class="mobile-nav-close" onclick="document.getElementById('hamburgerBtn').click()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html?category=men">Men's Collection</a>
+      <a href="products.html?category=women">Women's Collection</a>
+      <a href="products.html?category=kids">Kids' Collection</a>
+      <a href="products.html?category=accessories">Accessories</a>
+      <a href="products.html?category=sale" class="sale-link">End of Season Sale</a>
+      <hr class="mobile-divider">
+      <a href="wishlist.html"><i class="bi bi-heart me-2"></i> My Wishlist</a>
+      <a href="cart.html"><i class="bi bi-bag me-2"></i> Shopping Bag</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <p class="text-muted small mb-1">Customer Support</p>
+      <a href="tel:+918005550199" class="phone-link">+91 (800) 555-0199</a>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <div class="search-header">
+        <h3 class="search-title">SEARCH LUXE NOIR</h3>
+        <button class="search-close-btn" id="searchClose" aria-label="Close search">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="search-input-wrapper">
+        <i class="bi bi-search search-icon-input"></i>
+        <input type="text" id="searchInput" placeholder="Search for dresses, blazers, shirts, accessories..." autocomplete="off">
+      </div>
+      <div class="search-popular-tags">
+        <span class="tag-label">Popular Searches:</span>
+        <a href="products.html?search=blazer" class="search-tag">Tailored Blazer</a>
+        <a href="products.html?search=dress" class="search-tag">Midi Dress</a>
+        <a href="products.html?search=oxford" class="search-tag">Oxford Shirt</a>
+        <a href="products.html?search=leather" class="search-tag">Leather Belt</a>
+        <a href="products.html?category=sale" class="search-tag">Sale Highlights</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCartSidebar()"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping Cart Sidebar">
+    <div class="cart-header">
+      <div>
+        <h3 class="cart-title mb-0">SHOPPING BAG</h3>
+        <span class="cart-subtitle" id="cartCountText">0 items</span>
+      </div>
+      <button class="cart-close-btn" onclick="closeCartSidebar()" aria-label="Close cart">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="cart-free-shipping-progress">
+      <div class="progress-message" id="shippingProgressMsg">Add ₹2,000 for FREE express shipping</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="shippingProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Items dynamically injected -->
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-totals-breakdown">
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Subtotal</span>
+          <span id="cartSidebarSubtotal">₹0</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Estimated Delivery</span>
+          <span id="cartSidebarDelivery">₹99</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+          <span class="fw-bold">Total</span>
+          <span class="fw-bold fs-5" id="cartSidebarTotal">₹0</span>
+        </div>
+      </div>
+      <div class="cart-footer-actions">
+        <a href="cart.html" class="btn btn-outline-dark w-100 mb-2">View Full Bag</a>
+        <a href="checkout.html" class="btn btn-dark w-100">Proceed to Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content quickview-modal-content">
+        <button type="button" class="btn-close quickview-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row g-0">
+          <div class="col-md-6 quickview-img-col">
+            <img id="qvImage" src="" alt="Product Image" class="quickview-img">
+          </div>
+          <div class="col-md-6 quickview-details-col">
+            <span class="quickview-category text-uppercase" id="qvCategory">Category</span>
+            <h2 class="quickview-title" id="qvName">Product Name</h2>
+            <div class="quickview-price-wrapper">
+              <span class="quickview-price" id="qvPrice">₹0</span>
+              <span class="quickview-price-original" id="qvPriceOriginal"></span>
+              <span class="badge-sale ms-2" id="qvDiscountBadge" style="display:none;"></span>
+            </div>
+            <p class="quickview-description" id="qvDesc">Description text goes here.</p>
+
+            <!-- Size Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Size</label>
+              <div class="quickview-sizes" id="qvSizes"></div>
+            </div>
+
+            <!-- Color Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Color</label>
+              <div class="quickview-colors" id="qvColors"></div>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div class="quickview-action-group">
+              <div class="qty-stepper">
+                <button type="button" class="qty-btn" onclick="changeQvQty(-1)">-</button>
+                <input type="text" id="qvQty" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQvQty(1)">+</button>
+              </div>
+              <button class="btn btn-dark flex-grow-1" onclick="addToCartFromModal()">
+                <i class="bi bi-bag-plus me-2"></i> Add to Cart
+              </button>
+            </div>
+            <button class="quickview-wishlist-btn mt-3" id="qvWishlistBtn" onclick="addToWishlistFromModal()">
+              <i class="bi bi-heart me-2"></i> Add to Wishlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel-section">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="hero-slide" style="background-image: url('assets/images/hero_banner_1.jpg');">
+              <div class="hero-overlay"></div>
+              <div class="container h-100 d-flex align-items-center">
+                <div class="hero-content scroll-reveal">
+                  <span class="hero-subheading">AUTUMN / WINTER 2026</span>
+                  <h1 class="hero-heading">THE POETRY OF<br><span class="hero-highlight">MINIMALISM</span></h1>
+                  <p class="hero-text">Sharp tailoring meets fluid silhouettes. Explore the newly arrived capsule collection crafted from organic silks and fine wool.</p>
+                  <div class="hero-cta-group">
+                    <a href="products.html?category=women" class="btn btn-hero-primary">Shop Women</a>
+                    <a href="products.html?category=men" class="btn btn-hero-outline">Shop Men</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="hero-slide" style="background-image: url('assets/images/hero_banner_2.jpg');">
+              <div class="hero-overlay"></div>
+              <div class="container h-100 d-flex align-items-center">
+                <div class="hero-content scroll-reveal">
+                  <span class="hero-subheading">SIGNATURE TAILORING</span>
+                  <h1 class="hero-heading">ARCHITECTURAL<br><span class="hero-highlight">ELEGANCE</span></h1>
+                  <p class="hero-text">Structured lines and modern ease. Designed in Paris, hand-finished for an unmistakable presence.</p>
+                  <div class="hero-cta-group">
+                    <a href="products.html" class="btn btn-hero-primary">Explore All</a>
+                    <a href="products.html?category=sale" class="btn btn-hero-outline">View Sale</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <i class="bi bi-chevron-left carousel-nav-icon"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <i class="bi bi-chevron-right carousel-nav-icon"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Value Propositions Strip -->
+    <section class="value-props-section">
+      <div class="container">
+        <div class="row g-4 text-center">
+          <div class="col-lg-3 col-sm-6">
+            <div class="value-prop-card">
+              <i class="bi bi-truck value-prop-icon"></i>
+              <h4 class="value-prop-title">Complimentary Shipping</h4>
+              <p class="value-prop-desc">Free express delivery on all orders exceeding ₹2,000</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="value-prop-card">
+              <i class="bi bi-arrow-repeat value-prop-icon"></i>
+              <h4 class="value-prop-title">30-Day Hassle-Free Returns</h4>
+              <p class="value-prop-desc">Complimentary home pickup for effortless exchanges</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="value-prop-card">
+              <i class="bi bi-patch-check value-prop-icon"></i>
+              <h4 class="value-prop-title">Guaranteed Authenticity</h4>
+              <p class="value-prop-desc">Certified handcrafted fabrics & bespoke quality</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="value-prop-card">
+              <i class="bi bi-shield-check value-prop-icon"></i>
+              <h4 class="value-prop-title">24/7 Concierge Support</h4>
+              <p class="value-prop-desc">Dedicated sartorial advisors available at your service</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Grid Section -->
+    <section class="categories-section section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-tag">CURATED DEPARTMENTS</span>
+          <h2 class="section-title">Shop by Category</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Men -->
+          <div class="col-lg-3 col-sm-6">
+            <a href="products.html?category=men" class="category-card scroll-reveal">
+              <div class="category-img-box">
+                <img src="assets/images/category_men.jpg" alt="Men's Collection" loading="lazy">
+                <div class="category-overlay"></div>
+              </div>
+              <div class="category-meta">
+                <h3 class="category-name">Men</h3>
+                <span class="category-link">Discover Now <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+          <!-- Women -->
+          <div class="col-lg-3 col-sm-6">
+            <a href="products.html?category=women" class="category-card scroll-reveal">
+              <div class="category-img-box">
+                <img src="assets/images/category_women.jpg" alt="Women's Collection" loading="lazy">
+                <div class="category-overlay"></div>
+              </div>
+              <div class="category-meta">
+                <h3 class="category-name">Women</h3>
+                <span class="category-link">Discover Now <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+          <!-- Kids -->
+          <div class="col-lg-3 col-sm-6">
+            <a href="products.html?category=kids" class="category-card scroll-reveal">
+              <div class="category-img-box">
+                <img src="assets/images/category_kids.jpg" alt="Kids' Collection" loading="lazy">
+                <div class="category-overlay"></div>
+              </div>
+              <div class="category-meta">
+                <h3 class="category-name">Kids</h3>
+                <span class="category-link">Discover Now <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+          <!-- Accessories -->
+          <div class="col-lg-3 col-sm-6">
+            <a href="products.html?category=accessories" class="category-card scroll-reveal">
+              <div class="category-img-box">
+                <img src="assets/images/category_accessories.jpg" alt="Leather Accessories" loading="lazy">
+                <div class="category-overlay"></div>
+              </div>
+              <div class="category-meta">
+                <h3 class="category-name">Accessories</h3>
+                <span class="category-link">Discover Now <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending / New Arrivals Section -->
+    <section class="trending-section section-padding bg-light-section">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 scroll-reveal">
+          <div>
+            <span class="section-tag">FRESH OFF THE RUNWAY</span>
+            <h2 class="section-title mb-0">Trending Arrivals</h2>
+          </div>
+          <div class="mt-3 mt-md-0">
+            <a href="products.html" class="btn btn-outline-dark btn-sm px-4 py-2">View All Products <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div class="products-grid" id="trendingGrid">
+          <!-- Injected dynamically via main.js from productsData -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial / Lookbook Promo Banner -->
+    <section class="editorial-banner-section">
+      <div class="container-fluid p-0">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-lg-6 editorial-img-col" style="background-image: url('assets/images/hero_banner_2.jpg'); min-height: 480px;">
+          </div>
+          <div class="col-lg-6 d-flex align-items-center bg-noir text-white p-5 p-lg-6">
+            <div class="editorial-content scroll-reveal">
+              <span class="text-gold letter-spacing-wide small text-uppercase fw-semibold">WINTER ATELIER 2026</span>
+              <h2 class="editorial-heading mt-2 mb-3">Quiet Luxury in Every Stitch</h2>
+              <p class="editorial-text text-light-muted mb-4">
+                We believe exceptional style starts with conscious craftsmanship. Every piece in our Winter Atelier series is tailored with sustainable fabrics that drape naturally and withstand the test of time.
+              </p>
+              <div class="d-flex gap-3">
+                <a href="products.html?category=women" class="btn btn-light px-4 py-3 fw-semibold">Explore Capsule</a>
+                <a href="products.html?category=sale" class="btn btn-outline-light px-4 py-3">Sale Archive</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews / Testimonials -->
+    <section class="testimonials-section section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-tag">TESTIMONIALS</span>
+          <h2 class="section-title">The Luxe Experience</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card scroll-reveal">
+              <div class="stars text-gold mb-3">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-quote">
+                "The tailored blazer fits like it was bespoke. The silhouette is immaculate, clean and structured without feeling stiff. Zara and Massimo Dutti have serious competition."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name">Rohan Malhotra</span>
+                <span class="author-loc">Mumbai &bull; Verified Buyer</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card scroll-reveal">
+              <div class="stars text-gold mb-3">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-quote">
+                "Ordered the flowing midi dress for an evening gala. The fabric weight and drape are extraordinary. Fast 2-day delivery and beautifully packaged."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name">Ananya Sengupta</span>
+                <span class="author-loc">New Delhi &bull; Verified Buyer</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="testimonial-card scroll-reveal">
+              <div class="stars text-gold mb-3">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-quote">
+                "The oxford shirts and merino wool sweaters are now my daily uniform. Outstanding fabric durability even after dozens of dry cleans."
+              </p>
+              <div class="testimonial-author">
+                <span class="author-name">Vikramaditya Iyer</span>
+                <span class="author-loc">Bangalore &bull; Verified Buyer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">LUXE NOIR</div>
+          <p class="footer-desc">
+            Crafting contemporary elegance with conscious luxury. Timeless silhouettes designed for the modern lifestyle.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=men">Men's Atelier</a></li>
+            <li><a href="products.html?category=women">Women's Collection</a></li>
+            <li><a href="products.html?category=kids">Kids' Essentials</a></li>
+            <li><a href="products.html?category=accessories">Leather & Accessories</a></li>
+            <li><a href="products.html?category=sale">Seasonal Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Client Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Size & Fit Guide</a></li>
+            <li><a href="#">FAQ & Support</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Join the Atelier</h4>
+          <p class="footer-desc">
+            Subscribe to receive exclusive access to private sales, runway collection previews, and sartorial notes.
+          </p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Enter your email address" required>
+              <button class="btn btn-dark" type="submit">Join</button>
+            </div>
+          </form>
+          <div class="payment-badges mt-4">
+            <span class="badge-pay">VISA</span>
+            <span class="badge-pay">MASTERCARD</span>
+            <span class="badge-pay">AMEX</span>
+            <span class="badge-pay">UPI</span>
+            <span class="badge-pay">NET BANKING</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0 text-muted small">&copy; 2026 LUXE NOIR ATELIER. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+            <ul class="list-inline mb-0 small text-muted">
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container-custom" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

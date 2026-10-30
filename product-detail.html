@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | LUXE NOIR</title>
+  <meta name="description" content="View product specifications, fabric details, sizing, and styling options.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-logo">LUXE NOIR</div>
+  </div>
+
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container text-center">
+      <p class="mb-0">
+        COMPLIMENTARY DOMESTIC SHIPPING ON ORDERS OVER ₹2,000 &nbsp;|&nbsp; USE CODE: <span class="fw-bold tracking-wider">NOIR15</span> FOR 15% OFF
+      </p>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Mobile Hamburger -->
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Brand Logo -->
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-text">LUXE NOIR</span>
+        <span class="brand-tagline">ATELIER PARIS • MUMBAI</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="navbar-nav-links d-none d-lg-flex" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link-item">Home</a>
+        <a href="products.html?category=men" class="nav-link-item">Men</a>
+        <a href="products.html?category=women" class="nav-link-item">Women</a>
+        <a href="products.html?category=kids" class="nav-link-item">Kids</a>
+        <a href="products.html?category=accessories" class="nav-link-item">Accessories</a>
+        <a href="products.html?category=sale" class="nav-link-item sale-link">Sale</a>
+      </nav>
+
+      <!-- Utility Icons -->
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" id="searchBtn" aria-label="Search catalog" title="Search">
+          <i class="bi bi-search"></i>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn position-relative" aria-label="Wishlist" title="Wishlist">
+          <i class="bi bi-heart"></i>
+          <span class="wishlist-badge badge-count" style="display: none;">0</span>
+        </a>
+        <button class="nav-icon-btn position-relative" id="cartOpenBtn" onclick="openCartSidebar()" aria-label="Shopping Cart" title="Cart">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge badge-count" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <span class="brand-text">LUXE NOIR</span>
+      <button class="mobile-nav-close" onclick="document.getElementById('hamburgerBtn').click()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html?category=men">Men's Collection</a>
+      <a href="products.html?category=women">Women's Collection</a>
+      <a href="products.html?category=kids">Kids' Collection</a>
+      <a href="products.html?category=accessories">Accessories</a>
+      <a href="products.html?category=sale" class="sale-link">End of Season Sale</a>
+      <hr class="mobile-divider">
+      <a href="wishlist.html"><i class="bi bi-heart me-2"></i> My Wishlist</a>
+      <a href="cart.html"><i class="bi bi-bag me-2"></i> Shopping Bag</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <p class="text-muted small mb-1">Customer Support</p>
+      <a href="tel:+918005550199" class="phone-link">+91 (800) 555-0199</a>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <div class="search-header">
+        <h3 class="search-title">SEARCH LUXE NOIR</h3>
+        <button class="search-close-btn" id="searchClose" aria-label="Close search">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="search-input-wrapper">
+        <i class="bi bi-search search-icon-input"></i>
+        <input type="text" id="searchInput" placeholder="Search for dresses, blazers, shirts, accessories..." autocomplete="off">
+      </div>
+      <div class="search-popular-tags">
+        <span class="tag-label">Popular Searches:</span>
+        <a href="products.html?search=blazer" class="search-tag">Tailored Blazer</a>
+        <a href="products.html?search=dress" class="search-tag">Midi Dress</a>
+        <a href="products.html?search=oxford" class="search-tag">Oxford Shirt</a>
+        <a href="products.html?search=leather" class="search-tag">Leather Belt</a>
+        <a href="products.html?category=sale" class="search-tag">Sale Highlights</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCartSidebar()"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping Cart Sidebar">
+    <div class="cart-header">
+      <div>
+        <h3 class="cart-title mb-0">SHOPPING BAG</h3>
+        <span class="cart-subtitle" id="cartCountText">0 items</span>
+      </div>
+      <button class="cart-close-btn" onclick="closeCartSidebar()" aria-label="Close cart">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="cart-free-shipping-progress">
+      <div class="progress-message" id="shippingProgressMsg">Add ₹2,000 for FREE express shipping</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="shippingProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Items dynamically injected -->
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-totals-breakdown">
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Subtotal</span>
+          <span id="cartSidebarSubtotal">₹0</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Estimated Delivery</span>
+          <span id="cartSidebarDelivery">₹99</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+          <span class="fw-bold">Total</span>
+          <span class="fw-bold fs-5" id="cartSidebarTotal">₹0</span>
+        </div>
+      </div>
+      <div class="cart-footer-actions">
+        <a href="cart.html" class="btn btn-outline-dark w-100 mb-2">View Full Bag</a>
+        <a href="checkout.html" class="btn btn-dark w-100">Proceed to Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content quickview-modal-content">
+        <button type="button" class="btn-close quickview-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row g-0">
+          <div class="col-md-6 quickview-img-col">
+            <img id="qvImage" src="" alt="Product Image" class="quickview-img">
+          </div>
+          <div class="col-md-6 quickview-details-col">
+            <span class="quickview-category text-uppercase" id="qvCategory">Category</span>
+            <h2 class="quickview-title" id="qvName">Product Name</h2>
+            <div class="quickview-price-wrapper">
+              <span class="quickview-price" id="qvPrice">₹0</span>
+              <span class="quickview-price-original" id="qvPriceOriginal"></span>
+              <span class="badge-sale ms-2" id="qvDiscountBadge" style="display:none;"></span>
+            </div>
+            <p class="quickview-description" id="qvDesc">Description text goes here.</p>
+
+            <!-- Size Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Size</label>
+              <div class="quickview-sizes" id="qvSizes"></div>
+            </div>
+
+            <!-- Color Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Color</label>
+              <div class="quickview-colors" id="qvColors"></div>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div class="quickview-action-group">
+              <div class="qty-stepper">
+                <button type="button" class="qty-btn" onclick="changeQvQty(-1)">-</button>
+                <input type="text" id="qvQty" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQvQty(1)">+</button>
+              </div>
+              <button class="btn btn-dark flex-grow-1" onclick="addToCartFromModal()">
+                <i class="bi bi-bag-plus me-2"></i> Add to Cart
+              </button>
+            </div>
+            <button class="quickview-wishlist-btn mt-3" id="qvWishlistBtn" onclick="addToWishlistFromModal()">
+              <i class="bi bi-heart me-2"></i> Add to Wishlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="product-detail-breadcrumb py-3 bg-light-section border-bottom">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 small">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="products.html" id="detailCatBreadcrumb">Catalog</a></li>
+            <li class="breadcrumb-item active" aria-current="page" id="detailNameBreadcrumb">Product Name</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section section-padding">
+      <div class="container">
+        <div class="row g-5">
+          <!-- Left: Gallery -->
+          <div class="col-lg-6">
+            <div class="product-detail-gallery">
+              <div class="main-image-viewport">
+                <img id="detailMainImg" src="" alt="Product Detail" class="img-fluid w-100">
+                <span class="badge-sale" id="detailBadge" style="display: none;"></span>
+              </div>
+              <div class="thumbnails-track mt-3 d-flex gap-3">
+                <div class="thumbnail-item active" onclick="switchDetailImg(this, 1)">
+                  <img id="detailThumb1" src="" alt="Thumbnail 1" class="img-fluid">
+                </div>
+                <div class="thumbnail-item" onclick="switchDetailImg(this, 2)">
+                  <img id="detailThumb2" src="" alt="Thumbnail 2" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details & Buying Options -->
+          <div class="col-lg-6">
+            <div class="product-detail-info">
+              <span class="product-detail-cat text-uppercase text-gold fw-semibold" id="detailCategory">Category</span>
+              <h1 class="product-detail-title" id="detailTitle">Product Title</h1>
+
+              <!-- Ratings -->
+              <div class="product-rating-line d-flex align-items-center gap-2 mb-3">
+                <div class="stars text-gold small">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                </div>
+                <span class="rating-number text-muted small">4.8 (128 customer reviews)</span>
+              </div>
+
+              <!-- Price -->
+              <div class="product-detail-pricing mb-4">
+                <span class="detail-price-main fs-3 fw-bold" id="detailPrice">₹0</span>
+                <span class="detail-price-orig text-muted text-decoration-line-through ms-2 fs-5" id="detailPriceOrig"></span>
+                <span class="badge-discount ms-2" id="detailDiscount"></span>
+              </div>
+
+              <p class="detail-description text-muted mb-4" id="detailDescription">
+                Description goes here.
+              </p>
+
+              <!-- Color Selection -->
+              <div class="detail-option-block mb-4">
+                <label class="option-label mb-2 fw-semibold">Color Selection</label>
+                <div class="d-flex gap-2" id="detailColorSwatches">
+                  <!-- Swatches injected -->
+                </div>
+              </div>
+
+              <!-- Size Selection -->
+              <div class="detail-option-block mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label class="option-label m-0 fw-semibold">Select Size</label>
+                  <a href="#sizeModal" data-bs-toggle="modal" class="text-dark small text-decoration-underline"><i class="bi bi-rulers me-1"></i> Size Guide</a>
+                </div>
+                <div class="d-flex flex-wrap gap-2" id="detailSizeButtons">
+                  <!-- Sizes injected -->
+                </div>
+              </div>
+
+              <!-- Quantity & CTA Buttons -->
+              <div class="detail-actions-row d-flex gap-3 mb-4">
+                <div class="qty-stepper">
+                  <button type="button" class="qty-btn" onclick="changeDetailQty(-1)">-</button>
+                  <input type="text" id="detailQty" value="1" readonly>
+                  <button type="button" class="qty-btn" onclick="changeDetailQty(1)">+</button>
+                </div>
+                <button class="btn btn-dark flex-grow-1 py-3 fw-semibold" onclick="addDetailProductToCart()">
+                  <i class="bi bi-bag-plus me-2"></i> Add to Shopping Bag
+                </button>
+                <button class="btn btn-outline-dark px-4" id="detailWishlistBtn" onclick="toggleDetailWishlist()">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+
+              <!-- Delivery Estimates Strip -->
+              <div class="delivery-perks-box p-3 bg-light-section rounded mb-4">
+                <div class="d-flex align-items-center mb-2 text-dark small">
+                  <i class="bi bi-truck fs-5 text-gold me-2"></i>
+                  <span><strong>Free Express Delivery</strong> on orders over ₹2,000</span>
+                </div>
+                <div class="d-flex align-items-center text-dark small">
+                  <i class="bi bi-arrow-repeat fs-5 text-gold me-2"></i>
+                  <span><strong>30-Day Returns</strong> &bull; Complimentary doorstep pickup</span>
+                </div>
+              </div>
+
+              <!-- Accordions for Specs -->
+              <div class="accordion accordion-flush" id="productSpecsAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#accFabric">
+                      Fabric & Care Instructions
+                    </button>
+                  </h2>
+                  <div id="accFabric" class="accordion-collapse collapse" data-bs-parent="#productSpecsAccordion">
+                    <div class="accordion-body text-muted small">
+                      Made with 100% sustainable organic fibers. Machine wash cold on gentle cycle or professional dry clean. Do not tumble dry. Warm iron if necessary.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#accShipping">
+                      Shipping & Return Policy
+                    </button>
+                  </h2>
+                  <div id="accShipping" class="accordion-collapse collapse" data-bs-parent="#productSpecsAccordion">
+                    <div class="accordion-body text-muted small">
+                      Standard dispatch takes 24 hours. Domestic delivery takes 2-4 business days. We provide complete 30-day returns with instant refund once inspected.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products-section section-padding bg-light-section">
+      <div class="container">
+        <div class="section-header text-center mb-5">
+          <span class="section-tag">COMPLETE THE LOOK</span>
+          <h2 class="section-title">You May Also Like</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="products-grid" id="relatedProductsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Size Guide Modal -->
+  <div class="modal fade" id="sizeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="m-0">Size Guide</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <p class="text-muted small">All measurements are in inches. For a relaxed fit, we suggest ordering one size up.</p>
+        <table class="table table-bordered table-sm text-center small">
+          <thead class="table-dark">
+            <tr><th>Size</th><th>Chest</th><th>Waist</th><th>Hips</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>XS</td><td>34-36</td><td>28-30</td><td>35-37</td></tr>
+            <tr><td>S</td><td>36-38</td><td>30-32</td><td>37-39</td></tr>
+            <tr><td>M</td><td>38-40</td><td>32-34</td><td>39-41</td></tr>
+            <tr><td>L</td><td>40-42</td><td>34-36</td><td>41-43</td></tr>
+            <tr><td>XL</td><td>42-44</td><td>36-38</td><td>43-45</td></tr>
+            <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>45-47</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">LUXE NOIR</div>
+          <p class="footer-desc">
+            Crafting contemporary elegance with conscious luxury. Timeless silhouettes designed for the modern lifestyle.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=men">Men's Atelier</a></li>
+            <li><a href="products.html?category=women">Women's Collection</a></li>
+            <li><a href="products.html?category=kids">Kids' Essentials</a></li>
+            <li><a href="products.html?category=accessories">Leather & Accessories</a></li>
+            <li><a href="products.html?category=sale">Seasonal Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Client Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Size & Fit Guide</a></li>
+            <li><a href="#">FAQ & Support</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Join the Atelier</h4>
+          <p class="footer-desc">
+            Subscribe to receive exclusive access to private sales, runway collection previews, and sartorial notes.
+          </p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Enter your email address" required>
+              <button class="btn btn-dark" type="submit">Join</button>
+            </div>
+          </form>
+          <div class="payment-badges mt-4">
+            <span class="badge-pay">VISA</span>
+            <span class="badge-pay">MASTERCARD</span>
+            <span class="badge-pay">AMEX</span>
+            <span class="badge-pay">UPI</span>
+            <span class="badge-pay">NET BANKING</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0 text-muted small">&copy; 2026 LUXE NOIR ATELIER. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+            <ul class="list-inline mb-0 small text-muted">
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="toast-container-custom" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    let activeProduct = null;
+    let detailSelectedSize = null;
+    let detailSelectedColor = null;
+
+    function initDetailPage() {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id')) || 1;
+      activeProduct = productsData.find(p => p.id === id) || productsData[0];
+
+      // Populate details
+      document.getElementById('detailTitle').textContent = activeProduct.name;
+      document.getElementById('detailNameBreadcrumb').textContent = activeProduct.name;
+      document.getElementById('detailCategory').textContent = activeProduct.category;
+      document.getElementById('detailCatBreadcrumb').textContent = activeProduct.category.toUpperCase();
+      document.getElementById('detailCatBreadcrumb').href = `products.html?category=${activeProduct.category}`;
+      document.getElementById('detailPrice').textContent = formatPrice(activeProduct.price);
+      if (activeProduct.originalPrice) {
+        document.getElementById('detailPriceOrig').textContent = formatPrice(activeProduct.originalPrice);
+      }
+      if (activeProduct.discount) {
+        document.getElementById('detailDiscount').textContent = `-${activeProduct.discount}%`;
+        document.getElementById('detailDiscount').style.display = 'inline-block';
+      }
+      document.getElementById('detailDescription').textContent = activeProduct.description;
+
+      // Images
+      document.getElementById('detailMainImg').src = activeProduct.image;
+      document.getElementById('detailThumb1').src = activeProduct.image;
+      document.getElementById('detailThumb2').src = activeProduct.imageHover || activeProduct.image;
+
+      // Sizes
+      const sizesEl = document.getElementById('detailSizeButtons');
+      sizesEl.innerHTML = activeProduct.sizes.map((s, i) => `
+        <button class="size-btn ${i === 0 ? 'selected' : ''}" onclick="selectDetailSize(this, '${s}')">${s}</button>
+      `).join('');
+      detailSelectedSize = activeProduct.sizes[0];
+
+      // Colors
+      const colorsEl = document.getElementById('detailColorSwatches');
+      colorsEl.innerHTML = activeProduct.colors.map((c, i) => `
+        <button class="color-option-btn ${i === 0 ? 'selected' : ''}" style="background:${c};" onclick="selectDetailColor(this, '${c}')"></button>
+      `).join('');
+      detailSelectedColor = activeProduct.colors[0];
+
+      // Wishlist button state
+      updateDetailWishlistBtn();
+
+      // Related products
+      const related = productsData.filter(p => p.category === activeProduct.category && p.id !== activeProduct.id).slice(0, 4);
+      const relContainer = document.getElementById('relatedProductsGrid');
+      if (relContainer) {
+        relContainer.innerHTML = related.map(renderProductCard).join('');
+      }
+    }
+
+    function switchDetailImg(thumb, idx) {
+      document.querySelectorAll('.thumbnail-item').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      const img = idx === 1 ? activeProduct.image : (activeProduct.imageHover || activeProduct.image);
+      document.getElementById('detailMainImg').src = img;
+    }
+
+    function selectDetailSize(btn, s) {
+      document.querySelectorAll('#detailSizeButtons .size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      detailSelectedSize = s;
+    }
+
+    function selectDetailColor(btn, c) {
+      document.querySelectorAll('#detailColorSwatches .color-option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      detailSelectedColor = c;
+    }
+
+    function changeDetailQty(d) {
+      const input = document.getElementById('detailQty');
+      let val = parseInt(input.value) + d;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      input.value = val;
+    }
+
+    function addDetailProductToCart() {
+      const qty = parseInt(document.getElementById('detailQty').value) || 1;
+      addToCart({
+        id: activeProduct.id,
+        name: activeProduct.name,
+        price: activeProduct.price,
+        image: activeProduct.image,
+        size: detailSelectedSize || activeProduct.sizes[0],
+        color: detailSelectedColor || activeProduct.colors[0],
+        quantity: qty
+      });
+    }
+
+    function toggleDetailWishlist() {
+      toggleWishlistFromCard(activeProduct.id);
+      updateDetailWishlistBtn();
+    }
+
+    function updateDetailWishlistBtn() {
+      const wl = getWishlist();
+      const isW = wl.some(w => w.id === activeProduct.id);
+      const btn = document.getElementById('detailWishlistBtn');
+      if (btn) {
+        btn.innerHTML = `<i class="bi bi-heart${isW ? '-fill text-danger' : ''}"></i>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDetailPage();
+    });
+  </script>
+</body>
+</html>

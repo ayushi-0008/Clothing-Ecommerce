@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Bag | LUXE NOIR</title>
+  <meta name="description" content="Review your shopping bag and proceed to checkout at Luxe Noir.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-logo">LUXE NOIR</div>
+  </div>
+
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container text-center">
+      <p class="mb-0">
+        COMPLIMENTARY DOMESTIC SHIPPING ON ORDERS OVER ₹2,000 &nbsp;|&nbsp; USE CODE: <span class="fw-bold tracking-wider">NOIR15</span> FOR 15% OFF
+      </p>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Mobile Hamburger -->
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Brand Logo -->
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-text">LUXE NOIR</span>
+        <span class="brand-tagline">ATELIER PARIS • MUMBAI</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="navbar-nav-links d-none d-lg-flex" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link-item">Home</a>
+        <a href="products.html?category=men" class="nav-link-item">Men</a>
+        <a href="products.html?category=women" class="nav-link-item">Women</a>
+        <a href="products.html?category=kids" class="nav-link-item">Kids</a>
+        <a href="products.html?category=accessories" class="nav-link-item">Accessories</a>
+        <a href="products.html?category=sale" class="nav-link-item sale-link">Sale</a>
+      </nav>
+
+      <!-- Utility Icons -->
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" id="searchBtn" aria-label="Search catalog" title="Search">
+          <i class="bi bi-search"></i>
+        </button>
+        <a href="wishlist.html" class="nav-icon-btn position-relative" aria-label="Wishlist" title="Wishlist">
+          <i class="bi bi-heart"></i>
+          <span class="wishlist-badge badge-count" style="display: none;">0</span>
+        </a>
+        <button class="nav-icon-btn position-relative" id="cartOpenBtn" onclick="openCartSidebar()" aria-label="Shopping Cart" title="Cart">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge badge-count" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <span class="brand-text">LUXE NOIR</span>
+      <button class="mobile-nav-close" onclick="document.getElementById('hamburgerBtn').click()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html?category=men">Men's Collection</a>
+      <a href="products.html?category=women">Women's Collection</a>
+      <a href="products.html?category=kids">Kids' Collection</a>
+      <a href="products.html?category=accessories">Accessories</a>
+      <a href="products.html?category=sale" class="sale-link">End of Season Sale</a>
+      <hr class="mobile-divider">
+      <a href="wishlist.html"><i class="bi bi-heart me-2"></i> My Wishlist</a>
+      <a href="cart.html"><i class="bi bi-bag me-2"></i> Shopping Bag</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <p class="text-muted small mb-1">Customer Support</p>
+      <a href="tel:+918005550199" class="phone-link">+91 (800) 555-0199</a>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <div class="search-header">
+        <h3 class="search-title">SEARCH LUXE NOIR</h3>
+        <button class="search-close-btn" id="searchClose" aria-label="Close search">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="search-input-wrapper">
+        <i class="bi bi-search search-icon-input"></i>
+        <input type="text" id="searchInput" placeholder="Search for dresses, blazers, shirts, accessories..." autocomplete="off">
+      </div>
+      <div class="search-popular-tags">
+        <span class="tag-label">Popular Searches:</span>
+        <a href="products.html?search=blazer" class="search-tag">Tailored Blazer</a>
+        <a href="products.html?search=dress" class="search-tag">Midi Dress</a>
+        <a href="products.html?search=oxford" class="search-tag">Oxford Shirt</a>
+        <a href="products.html?search=leather" class="search-tag">Leather Belt</a>
+        <a href="products.html?category=sale" class="search-tag">Sale Highlights</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCartSidebar()"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping Cart Sidebar">
+    <div class="cart-header">
+      <div>
+        <h3 class="cart-title mb-0">SHOPPING BAG</h3>
+        <span class="cart-subtitle" id="cartCountText">0 items</span>
+      </div>
+      <button class="cart-close-btn" onclick="closeCartSidebar()" aria-label="Close cart">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="cart-free-shipping-progress">
+      <div class="progress-message" id="shippingProgressMsg">Add ₹2,000 for FREE express shipping</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="shippingProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Items dynamically injected -->
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-totals-breakdown">
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Subtotal</span>
+          <span id="cartSidebarSubtotal">₹0</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 text-muted small">
+          <span>Estimated Delivery</span>
+          <span id="cartSidebarDelivery">₹99</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+          <span class="fw-bold">Total</span>
+          <span class="fw-bold fs-5" id="cartSidebarTotal">₹0</span>
+        </div>
+      </div>
+      <div class="cart-footer-actions">
+        <a href="cart.html" class="btn btn-outline-dark w-100 mb-2">View Full Bag</a>
+        <a href="checkout.html" class="btn btn-dark w-100">Proceed to Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content quickview-modal-content">
+        <button type="button" class="btn-close quickview-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row g-0">
+          <div class="col-md-6 quickview-img-col">
+            <img id="qvImage" src="" alt="Product Image" class="quickview-img">
+          </div>
+          <div class="col-md-6 quickview-details-col">
+            <span class="quickview-category text-uppercase" id="qvCategory">Category</span>
+            <h2 class="quickview-title" id="qvName">Product Name</h2>
+            <div class="quickview-price-wrapper">
+              <span class="quickview-price" id="qvPrice">₹0</span>
+              <span class="quickview-price-original" id="qvPriceOriginal"></span>
+              <span class="badge-sale ms-2" id="qvDiscountBadge" style="display:none;"></span>
+            </div>
+            <p class="quickview-description" id="qvDesc">Description text goes here.</p>
+
+            <!-- Size Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Size</label>
+              <div class="quickview-sizes" id="qvSizes"></div>
+            </div>
+
+            <!-- Color Selector -->
+            <div class="quickview-option-group">
+              <label class="option-label">Select Color</label>
+              <div class="quickview-colors" id="qvColors"></div>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div class="quickview-action-group">
+              <div class="qty-stepper">
+                <button type="button" class="qty-btn" onclick="changeQvQty(-1)">-</button>
+                <input type="text" id="qvQty" value="1" readonly>
+                <button type="button" class="qty-btn" onclick="changeQvQty(1)">+</button>
+              </div>
+              <button class="btn btn-dark flex-grow-1" onclick="addToCartFromModal()">
+                <i class="bi bi-bag-plus me-2"></i> Add to Cart
+              </button>
+            </div>
+            <button class="quickview-wishlist-btn mt-3" id="qvWishlistBtn" onclick="addToWishlistFromModal()">
+              <i class="bi bi-heart me-2"></i> Add to Wishlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    <section class="catalog-header-section">
+      <div class="container text-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center mb-2">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Shopping Bag</li>
+          </ol>
+        </nav>
+        <h1 class="catalog-page-title">Your Shopping Bag</h1>
+        <p class="catalog-page-subtitle" id="cartPageItemCount">Review your selections</p>
+      </div>
+    </section>
+
+    <section class="cart-page-section section-padding">
+      <div class="container">
+        <!-- Cart Contents Row -->
+        <div class="row g-5" id="cartContentRow">
+          <!-- Cart Items Column -->
+          <div class="col-lg-8">
+            <div class="cart-items-table-card">
+              <div class="cart-table-header d-none d-md-flex">
+                <span class="col-6">Item</span>
+                <span class="col-2 text-center">Quantity</span>
+                <span class="col-2 text-center">Price</span>
+                <span class="col-2 text-end">Total</span>
+              </div>
+              <div id="cartPageItemsList">
+                <!-- Injected via cart page renderer -->
+              </div>
+            </div>
+
+            <!-- Back to Shop Link -->
+            <div class="mt-4">
+              <a href="products.html" class="text-dark text-decoration-none fw-semibold">
+                <i class="bi bi-arrow-left me-2"></i> Continue Shopping
+              </a>
+            </div>
+          </div>
+
+          <!-- Order Summary Column -->
+          <div class="col-lg-4">
+            <div class="order-summary-card">
+              <h3 class="summary-title mb-3">Order Summary</h3>
+
+              <!-- Promo Code Box -->
+              <div class="coupon-box mb-4">
+                <div class="input-group">
+                  <input type="text" id="couponInput" class="form-control" placeholder="Promo code (e.g. NOIR15)">
+                  <button class="btn btn-dark" type="button" onclick="applyCoupon()">Apply</button>
+                </div>
+                <div id="couponMessage" class="small mt-1"></div>
+              </div>
+
+              <!-- Breakdown -->
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="pageCartSubtotal">₹0</span>
+              </div>
+              <div class="summary-row" id="discountRow" style="display: none;">
+                <span class="text-success">Promo Discount</span>
+                <span class="text-success" id="pageCartDiscount">-₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Estimated Shipping</span>
+                <span id="pageCartDelivery">₹99</span>
+              </div>
+              <hr class="summary-divider">
+              <div class="summary-row total-row">
+                <span>Total Amount</span>
+                <span class="total-price" id="pageCartTotal">₹0</span>
+              </div>
+
+              <div class="mt-4">
+                <a href="checkout.html" class="btn btn-dark w-100 py-3 fw-semibold">Proceed to Checkout</a>
+              </div>
+
+              <!-- Security Badges -->
+              <div class="cart-security-perks mt-4 text-center">
+                <p class="text-muted small mb-2"><i class="bi bi-lock-fill text-gold me-1"></i> 256-Bit SSL Encrypted Checkout</p>
+                <div class="d-flex justify-content-center gap-3 text-muted small">
+                  <span><i class="bi bi-arrow-counterclockwise"></i> 30-Day Returns</span>
+                  <span><i class="bi bi-shield-check"></i> Genuine Fabric</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty Cart Display -->
+        <div class="empty-state-box text-center" id="cartPageEmpty" style="display: none;">
+          <div class="empty-icon-wrap mb-3">
+            <i class="bi bi-bag"></i>
+          </div>
+          <h2 class="empty-title mb-2">Your shopping bag is empty</h2>
+          <p class="empty-desc text-muted mb-4">Explore our seasonal collections to find your next luxury wardrobe essential.</p>
+          <a href="products.html" class="btn btn-dark px-5 py-3">Start Shopping</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">LUXE NOIR</div>
+          <p class="footer-desc">
+            Crafting contemporary elegance with conscious luxury. Timeless silhouettes designed for the modern lifestyle.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=men">Men's Atelier</a></li>
+            <li><a href="products.html?category=women">Women's Collection</a></li>
+            <li><a href="products.html?category=kids">Kids' Essentials</a></li>
+            <li><a href="products.html?category=accessories">Leather & Accessories</a></li>
+            <li><a href="products.html?category=sale">Seasonal Sale</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <h4 class="footer-heading">Client Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Size & Fit Guide</a></li>
+            <li><a href="#">FAQ & Support</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Join the Atelier</h4>
+          <p class="footer-desc">
+            Subscribe to receive exclusive access to private sales, runway collection previews, and sartorial notes.
+          </p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Enter your email address" required>
+              <button class="btn btn-dark" type="submit">Join</button>
+            </div>
+          </form>
+          <div class="payment-badges mt-4">
+            <span class="badge-pay">VISA</span>
+            <span class="badge-pay">MASTERCARD</span>
+            <span class="badge-pay">AMEX</span>
+            <span class="badge-pay">UPI</span>
+            <span class="badge-pay">NET BANKING</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0 text-muted small">&copy; 2026 LUXE NOIR ATELIER. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+            <ul class="list-inline mb-0 small text-muted">
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item"><a href="#" class="text-muted text-decoration-none">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="toast-container-custom" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Cart Page Script -->
+  <script>
+    let appliedDiscountPct = 0;
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      const msg = document.getElementById('couponMessage');
+      if (code === 'NOIR15') {
+        appliedDiscountPct = 15;
+        msg.innerHTML = '<span class="text-success"><i class="bi bi-check-circle"></i> 15% discount applied!</span>';
+        showToast('Promo code NOIR15 applied: 15% OFF', 'success');
+      } else if (code === 'LUXE20') {
+        appliedDiscountPct = 20;
+        msg.innerHTML = '<span class="text-success"><i class="bi bi-check-circle"></i> 20% VIP discount applied!</span>';
+        showToast('Promo code LUXE20 applied: 20% OFF', 'success');
+      } else {
+        msg.innerHTML = '<span class="text-danger"><i class="bi bi-exclamation-circle"></i> Invalid promo code. Try NOIR15</span>';
+        appliedDiscountPct = 0;
+      }
+      renderCartPage();
+    }
+
+    function renderCartPage() {
+      const cart = getCart();
+      const listEl = document.getElementById('cartPageItemsList');
+      const countEl = document.getElementById('cartPageItemCount');
+      const rowEl = document.getElementById('cartContentRow');
+      const emptyEl = document.getElementById('cartPageEmpty');
+
+      if (!listEl) return;
+
+      if (cart.length === 0) {
+        if (rowEl) rowEl.style.display = 'none';
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      if (rowEl) rowEl.style.display = 'flex';
+      if (emptyEl) emptyEl.style.display = 'none';
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (countEl) countEl.textContent = `${totalItems} item${totalItems !== 1 ? 's' : ''} in your bag`;
+
+      listEl.innerHTML = cart.map((item, index) => `
+        <div class="cart-page-item">
+          <div class="row align-items-center g-3">
+            <div class="col-md-6 col-12 d-flex align-items-center">
+              <img src="${item.image}" alt="${item.name}" class="cart-item-thumbnail me-3">
+              <div>
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-specs text-muted small">
+                  ${item.size ? `<span>Size: ${item.size}</span> &bull; ` : ''}
+                  <span class="d-inline-flex align-items-center">Color: <span class="cart-color-dot ms-1" style="background:${item.color};"></span></span>
+                </div>
+                <button class="btn btn-link text-danger p-0 mt-1 small text-decoration-none" onclick="removeFromCart(${index}); renderCartPage();">
+                  <i class="bi bi-trash3 me-1"></i> Remove
+                </button>
+              </div>
+            </div>
+            <div class="col-md-2 col-4 text-center">
+              <div class="qty-stepper mx-auto">
+                <button type="button" class="qty-btn" onclick="updateCartQty(${index}, -1); renderCartPage();">-</button>
+                <input type="text" value="${item.quantity}" readonly>
+                <button type="button" class="qty-btn" onclick="updateCartQty(${index}, 1); renderCartPage();">+</button>
+              </div>
+            </div>
+            <div class="col-md-2 col-4 text-center">
+              <span class="cart-item-unit-price">${formatPrice(item.price)}</span>
+            </div>
+            <div class="col-md-2 col-4 text-end">
+              <span class="cart-item-subtotal-price fw-bold">${formatPrice(item.price * item.quantity)}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Calculations
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const discount = Math.round(subtotal * (appliedDiscountPct / 100));
+      const delivery = subtotal > 2000 ? 0 : 99;
+      const total = subtotal - discount + delivery;
+
+      document.getElementById('pageCartSubtotal').textContent = formatPrice(subtotal);
+      const discRow = document.getElementById('discountRow');
+      if (appliedDiscountPct > 0) {
+        discRow.style.display = 'flex';
+        document.getElementById('pageCartDiscount').textContent = `-${formatPrice(discount)}`;
+      } else {
+        discRow.style.display = 'none';
+      }
+      document.getElementById('pageCartDelivery').textContent = delivery === 0 ? 'FREE' : formatPrice(delivery);
+      document.getElementById('pageCartTotal').textContent = formatPrice(total);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+    });
+  </script>
+</body>
+</html>
